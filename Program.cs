@@ -117,7 +117,7 @@ namespace PwdCrack
 					BruteForcer bruteForcer = new BruteForcer();
 					for (int passwordLength = passwordLengthStart; passwordLength <= passwordLengthEnd; passwordLength++ )
 					{
-						Console.Error.WriteLine("Starting brute force with length {0}...", passwordLength);
+						Console.Error.WriteLine($"Starting brute force with length {passwordLength}. Character set: {selectedCharacterSet}");
 						if (bruteForcer.StartBruteForce(passwordLength, BruteForceRaw, selectedCharacterSet))
 						{
 							return;
@@ -237,6 +237,11 @@ namespace PwdCrack
 
 		public static bool BruteForceConcat(string passwordPattern)
 		{
+			if (!PwdCrackSettings.Default.BruteForceConcat)
+			{
+				return false;
+			}
+
 			if (_bruteforceDictionnary == null)
 			{
 				return TryPassword(passwordPattern);
