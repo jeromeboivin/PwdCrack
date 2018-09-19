@@ -128,20 +128,12 @@ namespace PwdCrack
 							return;
 						}
 
-						if (selectedCharacterSet != CharacterSet.AlphaUpper &&
-							selectedCharacterSet != CharacterSet.AlphaUpperWithNumbers &&
-							selectedCharacterSet != CharacterSet.Numbers &&
-							selectedCharacterSet != CharacterSet.NumbersAndCommonSymbols &&
-							selectedCharacterSet != CharacterSet.NumbersAndSymbols &&
-							bruteForcer.StartBruteForce(passwordLength, BruteForceUpperCase, selectedCharacterSet))
+						if (bruteForcer.StartBruteForce(passwordLength, BruteForceUpperCase, selectedCharacterSet))
 						{
 							return;
 						}
 
-						if (selectedCharacterSet != CharacterSet.Numbers &&
-							selectedCharacterSet != CharacterSet.NumbersAndCommonSymbols &&
-							selectedCharacterSet != CharacterSet.NumbersAndSymbols && 
-							bruteForcer.StartBruteForce(passwordLength, BruteForceCapitalize, selectedCharacterSet))
+						if (bruteForcer.StartBruteForce(passwordLength, BruteForceCapitalize, selectedCharacterSet))
 						{
 							return;
 						}
@@ -278,6 +270,11 @@ namespace PwdCrack
 
 		public static bool BruteForceCapitalize(string passwordPattern)
 		{
+			if (!PwdCrackSettings.Default.BruteForceCapitalize)
+			{
+				return false;
+			}
+
 			if (_bruteforceDictionnary == null)
 			{
 				return TryPassword(passwordPattern);
@@ -315,6 +312,11 @@ namespace PwdCrack
 
 		public static bool BruteForceUpperCase(string passwordPattern)
 		{
+			if (!PwdCrackSettings.Default.BruteForceUpperCase)
+			{
+				return false;
+			}
+
 			if (_bruteforceDictionnary == null)
 			{
 				return TryPassword(passwordPattern);

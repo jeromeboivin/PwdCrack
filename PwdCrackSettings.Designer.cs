@@ -70,5 +70,29 @@ namespace PwdCrack {
                 this["BruteForceConcat"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool BruteForceUpperCase {
+            get {
+                return ((bool)(this["BruteForceUpperCase"]));
+            }
+            set {
+                this["BruteForceUpperCase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool BruteForceCapitalize {
+            get {
+                return ((bool)(this["BruteForceCapitalize"]));
+            }
+            set {
+                this["BruteForceCapitalize"] = value;
+            }
+        }
     }
 }
